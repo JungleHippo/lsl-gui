@@ -11,7 +11,7 @@ class LSLWorker(QThread):
 
     def run(self):
         print("Looking for a 'Markers' stream...")
-        streams = resolve_byprop('type', 'Control')
+        streams = resolve_byprop('type', 'Markers')
         
         if not streams:
             print("No streams found.")

@@ -1,17 +1,17 @@
 import time
 from random import shuffle
-from pylsl import StreamInfo, StreamOutlet
+from pylsl import StreamInfo, StreamOutlet, cf_string
 
 def main():
     # 1. Set up the Stream Information
     # Name, Type, Channel Count, Sampling Rate (0 = irregular), Data Format, Unique ID
     info = StreamInfo(
         name='MyMarkerStream', 
-        type='Control', 
-        channel_count=2, 
+        type='Markers', 
+        channel_count=1, 
         nominal_srate=0, 
-        # channel_format=float, 
-        source_id='marker_sender_id_123'
+        channel_format=cf_string, 
+        source_id='marker_sender_id_1223'
     )
 
     # 2. Create the Stream Outlet
@@ -23,7 +23,7 @@ def main():
         # 3. Enter the publishing loop
         while True:
             # LSL expects data as a list, even for a single channel
-            marker = [.6, .4]
+            marker = ['lol']
             shuffle(marker)  # Shuffle the marker values
             outlet.push_sample(marker)
             
